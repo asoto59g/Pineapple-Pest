@@ -1,5 +1,10 @@
 # Plagueo en Piña — PWA de monitoreo agrícola
 
+Link app
+
+https://asoto59g.github.io/Pineapple-Pest/
+
+
 Aplicación web progresiva (**PWA**) para registro de **plagas, enfermedades, malezas y parámetros de crecimiento** en cultivo de **piña** (Costa Rica / ABC Geomática Agricola SRL). Funciona como **SPA** en el navegador: una sola página (`index.html`) y vistas generadas en JavaScript; los datos se guardan en **`localStorage`** del dispositivo y se pueden enviar a **Google Sheets** mediante **Google Apps Script**.
 
 ---
