@@ -8,9 +8,10 @@
   "theme_color": "#00f2fe",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "appiña.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
