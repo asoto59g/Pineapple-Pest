@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Plagueo en Piña - ABC Geomática</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0a0f1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="orbital-lines"></div>
+    </div>
+
+    <div id="app" class="app-container">
+        <!-- Main Layout -->
+        <header class="main-header">
+            <div class="logo" style="display: flex; align-items: center;">
+                <img src="logo.png" alt="ABC Geomática" style="height: 38px; width: auto; max-width: 200px; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));">
+            </div>
+            <div class="status-indicators">
+                <span id="gps-status" class="indicator">GPS: OFF</span>
+                <span id="sync-status" class="indicator">SYNC: OK</span>
+            </div>
+        </header>
+
+        <main id="main-content" class="content-view">
+            <!-- Dynamic screens will be injected here -->
+            <div class="view-loader">
+                <div class="spinner"></div>
+                <p>Cargando Sistema de Plagueo en Piña...</p>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-view="dashboard">
+                <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span>
+                <span class="nav-label">Hoy</span>
+            </button>
+            <button class="nav-item" data-view="admin">
+                <span class="nav-icon"><i data-lucide="settings"></i></span>
+                <span class="nav-label">Admin</span>
+            </button>
+            <button class="nav-item" data-view="records">
+                <span class="nav-icon"><i data-lucide="clipboard-list"></i></span>
+                <span class="nav-label">Registros</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado (piña)', reg))
+                .catch(err => console.log('Error al registrar Service Worker (piña)', err));
+        }
+    </script>
+    <script src="app.js?v=1"></script>
+</body>
+
+</html>
+
