@@ -364,6 +364,15 @@ function renderDashboard() {
     const pending = records.filter(r => !r.synced).length;
     const userName = APP_STATE.user?.name?.split(' ')[0] || 'Usuario';
 
+    const ua = (navigator && navigator.userAgent) ? navigator.userAgent : '';
+    const isIOS = /iPad|iPhone|iPod/i.test(ua) && !window.MSStream;
+    const isAndroid = /Android/i.test(ua);
+    const installInstructions = isIOS
+        ? 'En iPhone (Safari): pulsa el botón compartir (cuadrado con flecha) → “Agregar a pantalla de inicio”.'
+        : (isAndroid
+            ? 'En Android (Chrome): menú ⋮ → “Instalar app”.'
+            : 'En tu navegador: busca “Instalar app” o “Agregar a pantalla de inicio”.');
+
     return `
         <div class="dashboard-hero">
             <div class="card welcome-card">
@@ -399,12 +408,21 @@ function renderDashboard() {
             </div>
 
             <div id="pwa-install-container">
-                ${APP_STATE.deferredPrompt ? `
-                    <div class="card install-card">
-                        <p>📲 Instale la App para acceso rápido.</p>
-                        <button class="btn btn-primary btn-small" onclick="installPWA()">INSTALAR APP</button>
-                    </div>
-                ` : ''}
+                <div class="card install-card">
+                    <p class="install-hint">
+                        📲 Instale la App para acceso rápido.
+                        ${APP_STATE.deferredPrompt
+                            ? ' También puede usar el botón para el prompt de instalación.'
+                            : ` ${installInstructions}`}
+                    </p>
+                    <button
+                        id="install-btn"
+                        class="btn btn-primary btn-small"
+                        onclick="installPWA()"
+                    >
+                        INSTALAR APP
+                    </button>
+                </div>
             </div>
         </div>
     `;
@@ -1645,7 +1663,18 @@ async function syncWithGoogleSheets() {
 }
 
 async function installPWA() {
-    if (!APP_STATE.deferredPrompt) return;
+    if (!APP_STATE.deferredPrompt) {
+        const ua = (navigator && navigator.userAgent) ? navigator.userAgent : '';
+        const isIOS = /iPad|iPhone|iPod/i.test(ua) && !window.MSStream;
+        const isAndroid = /Android/i.test(ua);
+        const msg = isIOS
+            ? 'En iPhone (Safari): pulsa el botón compartir (cuadrado con flecha) → “Agregar a pantalla de inicio”.'
+            : (isAndroid
+                ? 'En Android (Chrome): menú ⋮ → “Instalar app”.'
+                : 'En tu navegador: busca “Instalar app” o “Agregar a pantalla de inicio”.');
+        alert(msg);
+        return;
+    }
     APP_STATE.deferredPrompt.prompt();
     const { outcome } = await APP_STATE.deferredPrompt.userChoice;
     console.log(`User response to the install prompt (piña): ${outcome} `);

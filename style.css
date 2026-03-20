@@ -370,6 +370,31 @@ nav.bottom-nav .nav-item.active {
     border: none;
 }
 
+.install-card {
+    margin-top: 0.75rem;
+    padding: 1.35rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.install-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    text-align: left;
+}
+
+.install-waiting {
+    color: rgba(245, 158, 11, 0.95);
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 .monitoring-scroll {
     flex: 1;
     overflow-y: auto;

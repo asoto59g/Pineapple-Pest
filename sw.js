@@ -1,9 +1,9 @@
-const CACHE_NAME = 'abc-pine-v2';
+const CACHE_NAME = 'abc-pine-v3';
 const ASSETS = [
     './',
     './index.html',
     './style.css?v=2',
-    './app.js?v=1',
+    './app.js?v=3',
     './pineapple_field_bg.jpg',
     './manifest.json',
     './icon-512.png',
