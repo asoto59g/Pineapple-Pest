@@ -165,25 +165,12 @@ body {
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
-    animation: card-spark 5.5s linear infinite;
     filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.6));
-}
-
-@keyframes card-spark {
-    to {
-        --spark-angle: 360deg;
-    }
-}
-
-@property --spark-angle {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .card::before {
-        animation: none;
+        display: none;
     }
 }
 

@@ -258,7 +258,22 @@ const THRESHOLDS_DATA = {
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     renderView('dashboard');
+    startSparkAnimation();
 });
+
+/**
+ * Animación del destello (spark) perimetral mediante JS para máxima compatibilidad móvil.
+ * Reemplaza la API @property de CSS que falla en algunos Android/WebViews.
+ */
+function startSparkAnimation() {
+    let angle = 0;
+    const updateAngle = () => {
+        angle = (angle + 1.25) % 360; // 1.25deg por frame aprox (~5.5s ciclo)
+        document.documentElement.style.setProperty('--spark-angle', `${angle}deg`);
+        requestAnimationFrame(updateAngle);
+    };
+    requestAnimationFrame(updateAngle);
+}
 
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
